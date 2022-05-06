@@ -11,6 +11,10 @@
   --color-acent: #ff3400;
   --color-headings: #1b0760;
   --color-body: #918ca4;
+  --color-dark: #212529;
+  --color-green: #43853d;
+  --color-yellow: #efd81d;
+  --color-light-blue: #54cded;
 }
 
 /* Typografy */
@@ -99,4 +103,40 @@ p {
 .list--inline .list__item {
   display: inline-block;
   margin-right: 2rem;
+}
+
+/* Icons */
+.icon {
+  width: 40px;
+  height: 40px;
+}
+
+.icon--primary {
+  fill: var(--color-primary);
+}
+
+.icon--secondary {
+  fill: var(--color-secondary);
+}
+
+.icon--acent {
+  fill: var(--color-acent);
+}
+
+.icon--dark {
+  fill: var(--color-dark);
+}
+
+.icon--green {
+  fill: var(--color-green);
+}
+
+.icon--yellow {
+  fill: var(--color-yellow);
+  background: var(--color-dark);
+  border-radius: 5px;
+}
+
+.icon--light-blue {
+  fill: var(--color-light-blue);
 }
