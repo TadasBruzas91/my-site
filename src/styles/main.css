@@ -88,3 +88,15 @@ p {
 .link:hover::after {
   width: 100%;
 }
+
+/* Lists */
+.list {
+  color: var(--color-headings);
+  list-style: none;
+  padding-left: 0;
+}
+
+.list--inline .list__item {
+  display: inline-block;
+  margin-right: 2rem;
+}
