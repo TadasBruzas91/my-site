@@ -66,3 +66,25 @@ p {
     font-size: 3rem;
   }
 }
+
+/* Links */
+.link {
+  display: inline-block;
+  text-decoration: none;
+  color: var(--color-acent);
+  transition: 5s ease-in-out;
+  line-height: 1;
+}
+
+.link::after {
+  content: "";
+  width: 0;
+  height: 2px;
+  display: block;
+  background: var(--color-acent);
+  transition: 300ms;
+}
+
+.link:hover::after {
+  width: 100%;
+}
