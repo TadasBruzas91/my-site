@@ -9,25 +9,19 @@
     <title>Home</title>
   </head>
   <body>
-    <section class="block">
-      <div class="container">
-        <header class="block__header">
-          <h2 class="block__heading">Heading</h2>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis, laudantium.
-          </p>
-        </header>
-      </div>
-    </section>
-    <section class="block block--dark block--skewed-right">
-      <div class="container">
-        <header class="block__header">
-          <h2 class="block__heading">Heading</h2>
-          <p>
-           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum, architecto?
-          </p>
-                </div>
-        </header>
-    </section>
+    <nav class="nav collapsible">
+      <a href="/">
+        <h2 class="nav__header nav__brand">Tadas Code</h2>
+      </a>
+      <svg class="icon icon--dark nav__toggler">
+        <use xlink:href="icons/sprite.svg#bars-solid" />
+      </svg>
+      <ul class="list nav__list collapsible__content">
+        <li class="nav__item"><a href="#">Blog</a></li>
+        <li class="nav__item"><a href="#">Projects</a></li>
+        <li class="nav__item"><a href="#">Contact</a></li>
+        <li class="nav__item"><a href="#">About</a></li>
+      </ul>
+    </nav>
   </body>
 </html>

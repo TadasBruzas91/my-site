@@ -72,9 +72,12 @@ p {
 }
 
 /* Links */
+a {
+  text-decoration: none;
+}
+
 .link {
   display: inline-block;
-  text-decoration: none;
   color: var(--color-acent);
   transition: 5s ease-in-out;
   line-height: 1;
@@ -206,4 +209,74 @@ p {
 .container {
   max-width: 1080px;
   margin: 0 auto;
+}
+
+/* Navigation Bar */
+.nav {
+  background: #000;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.nav__brand {
+  font-size: 3rem;
+}
+
+.nav__header {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 1rem;
+  color: white;
+}
+
+.nav__list {
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.nav__item {
+  padding: 0.5rem 2rem;
+  border-bottom: 1px solid #222;
+  transition: border 0.3s;
+}
+
+.nav__item > a {
+  color: #d2d0db;
+  transition: color 0.3s;
+}
+
+.nav__item > a:hover {
+  color: #fff;
+}
+
+.nav__toggler {
+  fill: #fff;
+  opacity: 0.5;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.nav.collapsible--expanded .nav__toggler {
+  opacity: 1;
+}
+
+@media screen and (min-width: 768px) {
+  .nav__toggler {
+    display: none;
+  }
+  .nav__list {
+    width: auto;
+    display: flex;
+    font-size: 1.8rem;
+    max-height: 100%;
+    opacity: 1;
+  }
+
+  .nav__item {
+    border: 0;
+  }
 }
