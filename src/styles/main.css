@@ -383,7 +383,7 @@ a {
 .scroll__icon__frame {
   max-width: 30px;
   height: 80px;
-  margin-bottom: 4rem;
+  margin: 5rem auto;
   border-radius: 50px;
   border: 5px solid white;
 }
@@ -395,4 +395,10 @@ a {
   border-radius: 50%;
   background: white;
   animation: infinite 1s scroll_animation ease-out;
+}
+
+@media screen and (min-width: 768px) {
+  .scroll__icon__frame {
+    margin: 4rem 0;
+  }
 }
