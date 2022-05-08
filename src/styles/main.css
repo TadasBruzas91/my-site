@@ -35,6 +35,7 @@ h2,
 h3 {
   color: var(--color-headings);
   margin-bottom: 1rem;
+  line-height: 1.1;
 }
 
 h1 {
@@ -59,7 +60,7 @@ p {
   }
 
   h1 {
-    font-size: 8rem;
+    font-size: 7rem;
   }
 
   h2 {
@@ -181,7 +182,6 @@ a {
 .block {
   --padding-vertical: 6rem;
   padding: var(--padding-vertical) 2rem;
-  border: 2px solid red;
 }
 
 .block__header {
@@ -203,11 +203,11 @@ a {
 
 .block--skewed-right {
   padding-bottom: calc(var(--padding-vertical) + 4rem);
-  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 80%);
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 95%);
 }
 
 .container {
-  max-width: 1080px;
+  max-width: 1440px;
   margin: 0 auto;
 }
 
@@ -289,5 +289,27 @@ a {
 @media screen and (min-width: 768px) {
   .grid--1x2 {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Hero */
+.hero__content {
+  align-self: center;
+}
+
+.hero__image {
+  max-width: 100%;
+}
+
+.hero__tagline {
+  font-size: 2rem;
+  color: #b9c3cf;
+  letter-spacing: 1px;
+  margin: 2rem 0;
+}
+
+@media screen and (min-width: 768px) {
+  .hero__content {
+    text-align: left;
   }
 }
