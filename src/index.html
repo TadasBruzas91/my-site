@@ -9,7 +9,10 @@
     />
     <link rel="stylesheet" href="styles/main.css" />
     <script defer src="js/index.js"></script>
-    <script defer src="https://unpkg.com/smoothscroll-anchor-polyfill"></script>
+    <script
+      defer
+      src="https://unpkg.com/smoothscroll-anchor-polyfill@1.3.4"
+    ></script>
     <title>Home</title>
   </head>
   <body>
@@ -47,11 +50,136 @@
           /></picture>
         </div>
       </section>
+
+      <section class="container grid grid--1x2">
+        <section id="skills" class="block block--white">
+          <header class="block__header hero__content">
+            <h2 class="block__heading">Skills</h2>
+          </header>
+
+          <div class="collapsible border">
+            <header class="collapsible__header collapsible__header__hover">
+              <div class="collapsible__heading__icon">
+                <svg class="icon icon--acent">
+                  <use xlink:href="icons/sprite.svg#html5-brands" />
+                </svg>
+                <h3 class="collapsible__heading">HTML</h3>
+              </div>
+              <svg class="icon icon--light-dark collapsible__shevron">
+                <use xlink:href="icons/sprite.svg#circle-chevron-right-solid" />
+              </svg>
+            </header>
+            <div class="collapsible__content">Lorem ipsum dolor</div>
+          </div>
+
+          <div class="collapsible border">
+            <header class="collapsible__header collapsible__header__hover">
+              <div class="collapsible__heading__icon">
+                <svg class="icon icon--primary">
+                  <use xlink:href="icons/sprite.svg#css3-alt-brands" />
+                </svg>
+                <h3 class="collapsible__heading">CSS</h3>
+              </div>
+              <svg class="icon icon--light-dark collapsible__shevron">
+                <use xlink:href="icons/sprite.svg#circle-chevron-right-solid" />
+              </svg>
+            </header>
+            <div class="collapsible__content">Lorem ipsum dolor sit amet</div>
+          </div>
+
+          <div class="collapsible border">
+            <header class="collapsible__header collapsible__header__hover">
+              <div class="collapsible__heading__icon">
+                <svg class="icon icon--yellow">
+                  <use xlink:href="icons/sprite.svg#js-square-brands" />
+                </svg>
+                <h3 class="collapsible__heading">JS</h3>
+              </div>
+              <svg class="icon icon--light-dark collapsible__shevron">
+                <use xlink:href="icons/sprite.svg#circle-chevron-right-solid" />
+              </svg>
+            </header>
+            <div class="collapsible__content">Lorem</div>
+          </div>
+
+          <div class="collapsible border">
+            <header class="collapsible__header collapsible__header__hover">
+              <div class="collapsible__heading__icon">
+                <svg class="icon icon--green">
+                  <use xlink:href="icons/sprite.svg#node-js-brands" />
+                </svg>
+                <h3 class="collapsible__heading">NodeJS</h3>
+              </div>
+              <svg class="icon icon--light-dark collapsible__shevron">
+                <use xlink:href="icons/sprite.svg#circle-chevron-right-solid" />
+              </svg>
+            </header>
+            <div class="collapsible__content">Lorem</div>
+          </div>
+
+          <div class="collapsible border">
+            <header class="collapsible__header collapsible__header__hover">
+              <div class="collapsible__heading__icon">
+                <svg class="icon icon--light-blue">
+                  <use xlink:href="icons/sprite.svg#react-brands" />
+                </svg>
+                <h3 class="collapsible__heading">ReactJS</h3>
+              </div>
+              <svg class="icon icon--light-dark collapsible__shevron">
+                <use xlink:href="icons/sprite.svg#circle-chevron-right-solid" />
+              </svg>
+            </header>
+            <div class="collapsible__content">Lorem</div>
+          </div>
+
+          <div class="collapsible border">
+            <header class="collapsible__header collapsible__header__hover">
+              <div class="collapsible__heading__icon">
+                <svg class="icon icon--primary">
+                  <use xlink:href="icons/sprite.svg#docker-brands" />
+                </svg>
+                <h3 class="collapsible__heading">Docker</h3>
+              </div>
+              <svg class="icon icon--light-dark collapsible__shevron">
+                <use xlink:href="icons/sprite.svg#circle-chevron-right-solid" />
+              </svg>
+            </header>
+            <div class="collapsible__content">Lorem</div>
+          </div>
+
+          <div class="collapsible border">
+            <header class="collapsible__header collapsible__header__hover">
+              <div class="collapsible__heading__icon">
+                <svg class="icon icon--dark">
+                  <use xlink:href="icons/sprite.svg#linux-brands" />
+                </svg>
+                <h3 class="collapsible__heading">Linux</h3>
+              </div>
+              <svg class="icon icon--light-dark collapsible__shevron">
+                <use xlink:href="icons/sprite.svg#circle-chevron-right-solid" />
+              </svg>
+            </header>
+            <div class="collapsible__content">Lorem</div>
+          </div>
+        </section>
+
+        <section id="about" class="block block--white">
+          <header class="block__header hero__content">
+            <h2 class="block__heading">About</h2>
+          </header>
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque,
+            consequatur.
+          </p>
+        </section>
+      </section>
     </main>
 
     <footer>
       <section id="contact">
-        <ul class="list list--inline list--center">
+        <ul
+          class="list list--inline list--center block block--white block--footer"
+        >
           <li class="list__item">
             <a href="https://linkedin.com/in/tadasbružas" target="_blank">
               <svg class="icon icon--primary icon--contact">

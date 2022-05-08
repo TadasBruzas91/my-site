@@ -27,7 +27,7 @@ html {
 
 body {
   font-family: "Roboto", sans-serif;
-  background: whitesmoke;
+  background: #efefef;
   color: var(--color-body);
   font-size: 2.4rem;
   line-height: 1.5;
@@ -67,11 +67,11 @@ p {
   }
 
   h2 {
-    font-size: 6rem;
+    font-size: 4.2rem;
   }
 
   h3 {
-    font-size: 3rem;
+    font-size: 3.8rem;
   }
 }
 
@@ -121,7 +121,6 @@ a {
 .icon {
   width: 40px;
   height: 40px;
-  transition: all 0.2s;
 }
 
 .icon--primary {
@@ -154,8 +153,14 @@ a {
   fill: var(--color-light-blue);
 }
 
+.icon--contact {
+  border-radius: 10px;
+  padding: 5px;
+  transition: all 0.5s;
+}
+
 .icon--contact:hover {
-  transform: scale(1.1);
+  background: lightgray;
 }
 
 /* Collapsibles */
@@ -164,11 +169,24 @@ a {
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
+  padding: 5px;
+  transition: all 0.5s;
+  border-radius: 3px;
+}
+
+.collapsible__header__hover:hover {
+  background: lightgray;
 }
 
 .collapsible__heading {
-  margin-top: 0;
-  font-size: 3rem;
+  margin: 0 0 0 15px;
+  font-size: 2.5rem;
+}
+
+.collapsible__heading__icon {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .collapsible__content {
@@ -205,6 +223,18 @@ a {
   margin-top: 0;
 }
 
+.block--white {
+  background: #fff;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px black;
+}
+
+.block--white .block__heading {
+  color: #000;
+  margin-bottom: 3rem;
+}
+
 .block--dark {
   background: var(--color-dark);
   color: #7b858b;
@@ -212,6 +242,12 @@ a {
 
 .block--dark .block__heading {
   color: #fff;
+}
+
+.block--footer {
+  padding: 2rem 0;
+  margin: 20px 0 0;
+  border-radius: 0;
 }
 
 .block--skewed-right {
@@ -325,4 +361,8 @@ a {
   .hero__content {
     text-align: left;
   }
+}
+
+.border {
+  border-bottom: 1px solid #000;
 }
