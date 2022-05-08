@@ -9,24 +9,72 @@
     />
     <link rel="stylesheet" href="styles/main.css" />
     <script defer src="js/index.js"></script>
+    <script defer src="https://unpkg.com/smoothscroll-anchor-polyfill"></script>
     <title>Home</title>
   </head>
   <body>
-    <section class="block block--dark block--skewed-right">
-      <div class="grid grid--1x2 container">
-        <header class="block__header hero__content">
-          <h1 class="block__heading">
-            Hi, I'am<br />
-            Tadas Bružas
-          </h1>
-          <p class="hero__tagline">Front End Developer</p>
-        </header>
-        <picture>
-          <source type="image/webp" srcset="images/hero-image.webp" />
-          <source type="image/png" srcset="images/hero-image.png" />
-          <img class="hero__image" src="images/hero-image.png" alt=""
-        /></picture>
-      </div>
-    </section>
+    <header>
+      <nav class="nav collapsible">
+        <a href="/">
+          <h2 class="nav__header nav__brand">Tadas Code</h2>
+        </a>
+        <svg class="icon icon--dark nav__toggler">
+          <use xlink:href="icons/sprite.svg#bars-solid" />
+        </svg>
+        <ul class="list nav__list collapsible__content">
+          <!-- <li class="nav__item"><a href="#">Blog</a></li>
+          <li class="nav__item"><a href="#">Projects</a></li> -->
+          <li class="nav__item"><a href="#contact">Contact</a></li>
+          <li class="nav__item"><a href="#about">About</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="block block--dark block--skewed-right">
+        <div class="grid grid--1x2 container">
+          <header class="block__header hero__content">
+            <h1 class="block__heading">
+              Hi, I'am<br />
+              Tadas Bružas
+            </h1>
+            <p class="hero__tagline">Front End Developer</p>
+          </header>
+          <picture>
+            <source type="image/webp" srcset="images/hero-image.webp" />
+            <source type="image/png" srcset="images/hero-image.png" />
+            <img class="hero__image" src="images/hero-image.png" alt=""
+          /></picture>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <section id="contact">
+        <ul class="list list--inline list--center">
+          <li class="list__item">
+            <a href="https://linkedin.com/in/tadasbružas" target="_blank">
+              <svg class="icon icon--primary icon--contact">
+                <use xlink:href="icons/sprite.svg#linkedin-brands" />
+              </svg>
+            </a>
+          </li>
+          <a href="https://github.com/tadasbruzas91" target="_blank">
+            <li class="list__item">
+              <svg class="icon icon--dark icon--contact">
+                <use xlink:href="icons/sprite.svg#github-square-brands" />
+              </svg>
+            </li>
+          </a>
+          <a href="mailto:tadasbruzas91@gmail.com">
+            <li class="list__item">
+              <svg class="icon icon--dark icon--contact">
+                <use xlink:href="icons/sprite.svg#envelope-solid" />
+              </svg>
+            </li>
+          </a>
+        </ul>
+      </section>
+    </footer>
   </body>
 </html>

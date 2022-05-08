@@ -21,10 +21,13 @@
 
 html {
   font-size: 62.5%;
+  --scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
   font-family: "Roboto", sans-serif;
+  background: whitesmoke;
   color: var(--color-body);
   font-size: 2.4rem;
   line-height: 1.5;
@@ -109,10 +112,16 @@ a {
   margin-right: 2rem;
 }
 
+.list--center {
+  display: flex;
+  justify-content: center;
+}
+
 /* Icons */
 .icon {
   width: 40px;
   height: 40px;
+  transition: all 0.2s;
 }
 
 .icon--primary {
@@ -143,6 +152,10 @@ a {
 
 .icon--light-blue {
   fill: var(--color-light-blue);
+}
+
+.icon--contact:hover {
+  transform: scale(1.1);
 }
 
 /* Collapsibles */
