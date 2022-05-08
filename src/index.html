@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, srink-to-fit=no"
+    />
     <link rel="stylesheet" href="styles/main.css" />
     <script defer src="js/index.js"></script>
     <title>Home</title>
@@ -14,11 +17,15 @@
         <header class="block__header hero__content">
           <h1 class="block__heading">
             Hi, I'am<br />
-            Tadas&nbsp;Bružas
+            Tadas Bružas
           </h1>
           <p class="hero__tagline">Front End Developer</p>
         </header>
-        <img class="hero__image" src="images/hero-image.png" alt="" />
+        <picture>
+          <source type="image/webp" srcset="images/hero-image.webp" />
+          <source type="image/png" srcset="images/hero-image.png" />
+          <img class="hero__image" src="images/hero-image.png" alt=""
+        /></picture>
       </div>
     </section>
   </body>
