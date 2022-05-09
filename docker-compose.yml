@@ -9,10 +9,11 @@ services:
       - 80:80
       - 443:443
     volumes:
-      - ./nginx/conf/:/etc/nginx/conf.d/:ro
-      - ./certbot/www:/var/www/certbot/:ro
-  certbot:
-    image: certbot/certbot:latest
-    volumes:
-      - ./certbot/www/:/var/www/certbot/:rw
-      # - ./certbot/conf/:/etc/letsencrypt/:rw
+      - ./front-end/nginx/conf/:/etc/nginx/conf.d/:ro
+      - ./front-end/certbot/www:/var/www/certbot/:ro
+      # - ./front-end/certbot/conf/:/etc/nginx/ssl/
+  # certbot:
+  #   image: certbot/certbot:v1.27.0
+  #   volumes:
+  #     - ./front-end/certbot/www/:/var/www/certbot/:rw
+  #     - ./front-end/certbot/conf/:/etc/letsencrypt/:rw
