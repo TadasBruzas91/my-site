@@ -2,7 +2,6 @@
   "name": "my-site",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "start": "parcel watch src/index.html",
     "build": "parcel build src/index.html",
@@ -11,10 +10,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "parcel-bundler": "^1.12.5"
-  },
   "dependencies": {
     "normalize.css": "^8.0.1"
+  },
+  "devDependencies": {
+    "parcel": "^2.5.0"
   }
 }
