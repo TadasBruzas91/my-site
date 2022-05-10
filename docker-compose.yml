@@ -12,4 +12,4 @@ services:
       - ./front-end/nginx/logs/:/var/log/nginx/:rw
       - ./front-end/nginx/conf/:/etc/nginx/conf.d/:ro
       - /var/www/html/:/var/www/html/:ro
-      - /etc/letsencrypt/:/etc/nginx/ssl/ro
+      - /etc/letsencrypt/:/etc/nginx/ssl/:ro
