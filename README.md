@@ -1,2 +1,1 @@
-docker build -t my-site .
-docker run -dp 80:80 my-site
+sudo certbot certonly --webroot --webroot-path /var/www/html/ -d example.com --dry-run

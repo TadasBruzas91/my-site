@@ -8,5 +8,7 @@ services:
     ports:
       - 80:80
     volumes:
-      - ./front-end/dist/:/usr/share/nginx/html/:ro
       - ./front-end/nginx/logs/:/var/log/nginx/:rw
+      - ./front-end/nginx/conf/:/etc/nginx/conf.d/:ro
+      - ./front-end/dist/:/usr/share/nginx/html/:ro
+      - /var/www/html/:/var/www/html/:ro

@@ -11,5 +11,5 @@ services:
     volumes:
       - ./front-end/nginx/logs/:/var/log/nginx/:rw
       - ./front-end/nginx/conf/:/etc/nginx/conf.d/:ro
-      - ./front-end/certbot/www:/var/www/certbot/:ro
-      # - ./front-end/certbot/conf/:/etc/nginx/ssl/
+      - /var/www/html/:/var/www/html/:ro
+      - /etc/letsencrypt/:/etc/nginx/ssl/ro
