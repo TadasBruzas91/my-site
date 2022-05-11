@@ -1,14 +1,21 @@
 version: "3.9"
 
 services:
+  reverse-proxy:
+    image: nginx:1.21.6-alpine
+    container_name: reverse-proxy
+    depends_on:
+      - web
+    ports:
+      - 80:80
+    volumes:
+      - ./reverse-proxy/:/etc/nginx/conf.d/:ro
   web:
     build:
       context: ./front-end
       dockerfile: Dockerfile
-    ports:
-      - 80:80
+    container_name: web
     volumes:
       - ./front-end/nginx/logs/:/var/log/nginx/:rw
-      - ./front-end/nginx/conf/:/etc/nginx/conf.d/:ro
       - ./front-end/dist/:/usr/share/nginx/html/:ro
       - /var/www/html/:/var/www/html/:ro
