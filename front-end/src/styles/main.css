@@ -268,6 +268,13 @@ a {
   flex-wrap: wrap;
   align-items: center;
   padding: 0 1rem;
+  position: fixed;
+  z-index: 999;
+  width: calc(100vw - 2rem);
+}
+
+.nav__container {
+  height: 53px;
 }
 
 .nav__brand {
@@ -277,7 +284,7 @@ a {
 .nav__header {
   margin-top: 0;
   margin-bottom: 0;
-  padding: 1rem;
+  padding: 1rem 0;
   color: white;
 }
 
