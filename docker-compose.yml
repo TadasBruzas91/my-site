@@ -11,6 +11,7 @@ services:
       - 443:443
     volumes:
       - ./reverse-proxy/:/etc/nginx/conf.d/:ro
+      - /etc/letsencrypt/:/etc/nginx/ssl/:ro
   web:
     build:
       context: ./front-end
@@ -19,4 +20,3 @@ services:
     volumes:
       - ./front-end/nginx/logs/:/var/log/nginx/:rw
       - /var/www/html/:/var/www/html/:ro
-      - /etc/letsencrypt/:/etc/nginx/ssl/:ro
