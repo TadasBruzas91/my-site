@@ -17,7 +17,6 @@ services:
       dockerfile: Dockerfile
     container_name: web
     volumes:
-      - ./front-end/nginx/logs/:/var/log/nginx/:rw
       - ./front-end/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./front-end/dist/:/usr/share/nginx/html/:ro
       - /var/www/html/:/var/www/html/:ro
