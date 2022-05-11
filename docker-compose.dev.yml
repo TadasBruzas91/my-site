@@ -11,6 +11,7 @@ services:
     volumes:
       - ./reverse-proxy/conf.d/:/etc/nginx/conf.d/:ro
       - ./reverse-proxy/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./reverse-proxy/logs/:/var/log/nginx/:rw
   web:
     build:
       context: ./front-end

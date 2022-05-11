@@ -3,4 +3,5 @@
 **/node_modules/
 **/dist/
 **/certbot
-**/nginx/logs/
+**/access.log
+**/error.log
