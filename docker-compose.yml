@@ -15,6 +15,7 @@ services:
       - ./reverse-proxy/nginx.conf:/etc/nginx/nginx.conf:ro
       - /etc/letsencrypt/:/etc/nginx/ssl/:ro
       - /etc/ssl/dhparamcerts.pem:/etc/ssl/dhparamcerts.pem:ro
+
   web:
     build:
       context: ./front-end
@@ -23,6 +24,17 @@ services:
     volumes:
       - ./front-end/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - /var/www/html/:/var/www/html/:ro
+
+  dashboard:
+    build:
+      context: ./react-dashboard
+      dockerfile: Dockerfile
+    container_name: dashboard
+    depends_on:
+      - api
+    volumes:
+      - ./front-end/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+
   api:
     build:
       context: ./back-end
