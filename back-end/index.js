@@ -26,7 +26,7 @@ if (cluster.isMaster) {
   app.use(cors());
   app.use(express.json());
 
-  app.get("/api", (_, res) => {
+  app.get("/", (_, res) => {
     const msg = { status: `Server is running on ${totalCPUs} CPUs...` };
     res.json(msg);
   });
