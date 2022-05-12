@@ -21,10 +21,12 @@ if (cluster.isMaster) {
   const cors = require("cors");
   const PORT = 80;
   const app = express();
+  const hwInfo = require("./routes/sysInfo");
 
   app.use(helmet());
   app.use(cors());
   app.use(express.json());
+  app.use("/hwinfo", hwInfo);
 
   app.get("/", (_, res) => {
     const msg = { status: `Server is running on ${totalCPUs} CPUs...` };
