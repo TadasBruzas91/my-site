@@ -23,3 +23,9 @@ services:
     volumes:
       - ./front-end/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - /var/www/html/:/var/www/html/:ro
+  api:
+    build:
+      context: ./back-end
+      dockerfile: Dockerfile
+    container_name: api
+    pid: "host"
