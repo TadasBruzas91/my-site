@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import CircularProgressWithLabel from "./components/CircularProgressWithLabel";
 import "./App.css";
 
 function App() {
   const [hwInfo, setHwInfo] = useState();
+
   useEffect(() => {
     async function fetchData() {
       const { data } = await axios.get("http://localhost/api/hwinfo");
@@ -19,6 +21,13 @@ function App() {
 
   return (
     <div className="App">
+      <h2>Cpu load</h2>
+      <CircularProgressWithLabel
+        size={200}
+        thickness={8}
+        color="success"
+        value={hwInfo ? hwInfo.cpu_load : 0}
+      />
       <h2>Cpu load {hwInfo ? hwInfo.cpu_load.toFixed(2) : ""}</h2>
       <h2>Cpu Frequency {hwInfo ? hwInfo.cpu_freq.toFixed(2) : ""}</h2>
       <h2>Cpu Temp {hwInfo ? hwInfo.cpu_temp.toFixed(2) : ""}</h2>
