@@ -23,7 +23,7 @@ export default function CircularProgressWithLabel(props) {
   const modProps = { ...props, value: modValue };
 
   return (
-    <Box sx={{ position: "relative", display: "inline-flex" }}>
+    <Box sx={{ position: "relative", display: "inline-flex", m: 2 }}>
       <CircularProgress
         style={{
           transform: "rotate(150deg)",
