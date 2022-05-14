@@ -1,0 +1,32 @@
+#!/bin/bash
+
+if [[ "$1" = "-rs" ]]
+then
+    ./scripts/dev-restart.sh
+    exit
+fi
+
+if [[ "$1" = "-rb" ]]
+then
+    ./scripts/dev-rebuild.sh
+    exit
+fi
+
+if [[ "$1" = "-s" ]]
+then
+    ./scripts/dev-start.sh
+    exit
+fi
+
+if [[ "$1" = "-e" ]]
+then
+    ./scripts/dev-stop.sh
+    exit
+fi
+
+text="dev containers"
+
+echo "Enter -s for start $text"
+echo "Enter -e for stop $text"
+echo "Enter -rs for restart $text"
+echo "Enter -rb for rebuild $text"
