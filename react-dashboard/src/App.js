@@ -4,7 +4,7 @@ import CircularProgressWithLabel from "./components/CircularProgressWithLabel";
 import "./App.css";
 
 function App() {
-  const [hwInfo, setHwInfo] = useState();
+  const [hwInfo, setHwInfo] = useState({});
 
   useEffect(() => {
     async function fetchData() {
@@ -24,14 +24,39 @@ function App() {
       <h2>Cpu load</h2>
       <CircularProgressWithLabel
         size={200}
-        thickness={8}
+        thickness={4}
         color="success"
-        value={hwInfo ? hwInfo.cpu_load : 0}
+        value={hwInfo.cpu_load}
+        symbol="%"
       />
-      <h2>Cpu load {hwInfo ? hwInfo.cpu_load.toFixed(2) : ""}</h2>
-      <h2>Cpu Frequency {hwInfo ? hwInfo.cpu_freq.toFixed(2) : ""}</h2>
-      <h2>Cpu Temp {hwInfo ? hwInfo.cpu_temp.toFixed(2) : ""}</h2>
-      <h2>Ram used {hwInfo ? hwInfo.ram_used_perc.toFixed(2) : ""}</h2>
+      <h2>Cpu ferquency</h2>
+      <CircularProgressWithLabel
+        size={200}
+        thickness={4}
+        color="success"
+        value={hwInfo.cpu_freq}
+        min={hwInfo.cpu_freq_min}
+        max={hwInfo.cpu_freq_max}
+        symbol="GHz"
+      />
+      <h2>Cpu Temperatue</h2>
+      <CircularProgressWithLabel
+        size={200}
+        thickness={4}
+        color="success"
+        value={hwInfo.cpu_temp}
+        min={30}
+        max={90}
+        symbol="°C"
+      />
+      <h2>Ram used</h2>
+      <CircularProgressWithLabel
+        size={200}
+        thickness={4}
+        color="success"
+        value={hwInfo.ram_used_perc}
+        symbol="%"
+      />
     </div>
   );
 }
