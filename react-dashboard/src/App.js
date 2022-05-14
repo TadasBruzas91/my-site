@@ -19,19 +19,16 @@ function App() {
     };
   }, []);
 
-  console.log(hwInfo);
-
   return (
     <div className="App">
-      <h2>Cpu load</h2>
       <CircularProgressWithLabel
         size={200}
         thickness={4}
         color="success"
         value={hwInfo.cpu_load}
         symbol="%"
+        label="CPU Load"
       />
-      <h2>Cpu ferquency</h2>
       <CircularProgressWithLabel
         size={200}
         thickness={4}
@@ -40,8 +37,8 @@ function App() {
         min={hwInfo.cpu_freq_min}
         max={hwInfo.cpu_freq_max}
         symbol="GHz"
+        label="CPU Frequency"
       />
-      <h2>Cpu Temperatue</h2>
       <CircularProgressWithLabel
         size={200}
         thickness={4}
@@ -50,14 +47,15 @@ function App() {
         min={30}
         max={90}
         symbol="°C"
+        label="CPU Temperature"
       />
-      <h2>Ram used</h2>
       <CircularProgressWithLabel
         size={200}
         thickness={4}
         color="success"
         value={hwInfo.ram_used_perc}
         symbol="%"
+        label="RAM Usage"
       />
     </div>
   );

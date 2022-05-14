@@ -58,6 +58,15 @@ export default function CircularProgressWithLabel(props) {
       >
         <Typography
           variant="caption"
+          fontSize={12}
+          component="div"
+          color="text.secondary"
+          sx={{ position: "absolute", top: "60px" }}
+        >
+          {`${props.label ? props.label : ""}`}
+        </Typography>
+        <Typography
+          variant="caption"
           fontSize={30}
           component="div"
           color="text.secondary"
