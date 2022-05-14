@@ -11,7 +11,7 @@ export default function CircularProgressWithLabel(props) {
   }
 
   const scale = 1.5;
-  const modValue = normalized / scale;
+  const modValue = normalized ? normalized / scale : 0;
 
   function getColor(value) {
     //value from 0 to 1
