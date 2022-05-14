@@ -30,12 +30,13 @@ services:
   dashboard:
     build:
       context: ./react-dashboard
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     container_name: dashboard
     depends_on:
       - api
     volumes:
       - ./react-dashboard/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./react-dashboard/build/:/usr/share/nginx/html/:ro
 
   api:
     build:
