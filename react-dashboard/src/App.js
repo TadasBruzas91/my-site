@@ -19,6 +19,8 @@ function App() {
     };
   }, []);
 
+  console.log(hwInfo);
+
   return (
     <div className="App">
       <h2>Cpu load</h2>
