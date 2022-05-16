@@ -1,63 +1,47 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
 import CircularProgressWithLabel from "./components/CircularProgressWithLabel";
 import "./App.css";
 
 function App() {
-  const [hwInfo, setHwInfo] = useState({});
+  const [hwInfo, setHwInfo] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
-      const { data } = await axios.get("http://localhost/api/hwinfo");
+      const { data } = await axios.get("http://localhost:9000/hwinfo");
       setHwInfo(data);
     }
     fetchData();
-    const intervalId = setInterval(fetchData, 5000);
+    const intervalId = setInterval(fetchData, 1000);
 
     return () => {
       clearInterval(intervalId);
     };
   }, []);
-
+  console.log(hwInfo);
   return (
-    <div className="App">
-      <CircularProgressWithLabel
-        size={200}
-        thickness={4}
-        color="success"
-        value={hwInfo.cpu_load}
-        symbol="%"
-        label="CPU Load"
-      />
-      <CircularProgressWithLabel
-        size={200}
-        thickness={4}
-        color="success"
-        value={hwInfo.cpu_freq}
-        min={hwInfo.cpu_freq_min}
-        max={hwInfo.cpu_freq_max}
-        symbol="GHz"
-        label="CPU Frequency"
-      />
-      <CircularProgressWithLabel
-        size={200}
-        thickness={4}
-        color="success"
-        value={hwInfo.cpu_temp}
-        min={30}
-        max={90}
-        symbol="°C"
-        label="CPU Temperature"
-      />
-      <CircularProgressWithLabel
-        size={200}
-        thickness={4}
-        color="success"
-        value={hwInfo.ram_used_perc}
-        symbol="%"
-        label="RAM Usage"
-      />
-    </div>
+    <Container>
+      <Grid container spacing={1} alignItems="center">
+        {hwInfo.map((item) => (
+          <Grid item sx={12} sm={6}>
+            <Paper>
+              <CircularProgressWithLabel
+                size={200}
+                thickness={4}
+                value={item.current}
+                symbol={item.symbol}
+                label={item.label}
+                min={item.min}
+                max={item.max}
+              />
+            </Paper>
+          </Grid>
+        ))}
+      </Grid>
+    </Container>
   );
 }
 
