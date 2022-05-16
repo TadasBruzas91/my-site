@@ -1,6 +1,8 @@
 import CircularProgress from "@mui/material/CircularProgress";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import { useTheme } from "@mui/material/styles";
+import { useMediaQuery } from "@mui/material";
 
 export default function CircularProgressWithLabel(props) {
   const { value, min, max } = props;
@@ -13,6 +15,7 @@ export default function CircularProgressWithLabel(props) {
   const scale = 1.5;
   const modValue = normalized ? normalized / scale : 0;
 
+  // Set progress bar color
   function getColor(value) {
     //value from 0 to 1
     var hue = ((1 - value / 100) * 120).toString(10);
@@ -22,11 +25,19 @@ export default function CircularProgressWithLabel(props) {
 
   const modProps = { ...props, value: modValue };
 
+  // Change progress bar orentation
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down("sm"));
+  let angle = 150;
+  if (!matches) angle = 60;
+
+  console.log(matches);
+
   return (
-    <Box sx={{ position: "relative", display: "inline-flex", m: 2 }}>
+    <Box sx={{ position: "relative", display: "inline-flex" }}>
       <CircularProgress
         style={{
-          transform: "rotate(150deg)",
+          transform: `rotate(${angle}deg)`,
           strokeLinecap: "round",
           color: "lightgray",
         }}
@@ -35,7 +46,7 @@ export default function CircularProgressWithLabel(props) {
       />
       <CircularProgress
         style={{
-          transform: "rotate(150deg)",
+          transform: `rotate(${angle}deg)`,
           position: "absolute",
           left: "0",
           strokeLinecap: "round",

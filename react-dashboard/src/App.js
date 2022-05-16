@@ -11,11 +11,11 @@ function App() {
 
   useEffect(() => {
     async function fetchData() {
-      const { data } = await axios.get("http://localhost:9000/hwinfo");
+      const { data } = await axios.get("https://tadascode.lt/api/hwinfo");
       setHwInfo(data);
     }
     fetchData();
-    const intervalId = setInterval(fetchData, 1000);
+    const intervalId = setInterval(fetchData, 5000);
 
     return () => {
       clearInterval(intervalId);
@@ -24,10 +24,10 @@ function App() {
   console.log(hwInfo);
   return (
     <Container>
-      <Grid container spacing={1} alignItems="center">
+      <Grid container spacing={10}>
         {hwInfo.map((item) => (
-          <Grid item sx={12} sm={6}>
-            <Paper>
+          <Grid item xs={12} container spacing={1}>
+            <Grid item xs={12} sm={"auto"} textAlign="center">
               <CircularProgressWithLabel
                 size={200}
                 thickness={4}
@@ -36,8 +36,12 @@ function App() {
                 label={item.label}
                 min={item.min}
                 max={item.max}
+                mx="auto"
               />
-            </Paper>
+            </Grid>
+            <Grid item xs={12} sm>
+              <Paper sx={{ height: 203 }}> </Paper>
+            </Grid>
           </Grid>
         ))}
       </Grid>
