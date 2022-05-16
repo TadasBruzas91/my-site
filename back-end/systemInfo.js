@@ -13,14 +13,24 @@ module.exports = class HwInfo {
     const { speedMin: cpu_freq_min, speedMax: cpu_freq_max } = await si.cpu();
     const { total: ram_available, active: ram_used } = await si.mem();
     const ram_used_perc = (ram_used * 100) / ram_available;
-    this.hwInfo = {
-      cpu_load,
-      cpu_freq,
-      cpu_freq_min,
-      cpu_freq_max,
-      cpu_temp,
-      ram_used_perc,
-    };
+    this.hwInfo = [
+      { current: cpu_load, label: "CPU Load", symbol: "%" },
+      {
+        current: cpu_freq,
+        min: cpu_freq_min,
+        max: cpu_freq_max,
+        label: "CPU Frequency",
+        symbol: "GHz",
+      },
+      {
+        current: cpu_temp,
+        min: 40,
+        max: 90,
+        label: "CPU Temperature",
+        symbol: "°C",
+      },
+      { current: ram_used_perc, label: "RAM Usage", symbol: "%" },
+    ];
   };
 
   getHwInfo = () => {
