@@ -31,8 +31,6 @@ export default function CircularProgressWithLabel(props) {
   let angle = 150;
   if (!matches) angle = 60;
 
-  console.log(matches);
-
   return (
     <Box sx={{ position: "relative", display: "inline-flex" }}>
       <CircularProgress
