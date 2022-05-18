@@ -1,13 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const HwInfo = require("../systemInfo");
 
-const hw = new HwInfo();
+let data = null;
 
-setInterval(hw.update, 5000);
+process.on("message", (msg) => {
+  data = msg.data;
+});
 
-router.get("/", (req, res) => {
-  res.json(hw.getHwInfo());
+router.get("/", async (req, res) => {
+  res.json(data);
 });
 
 module.exports = router;
