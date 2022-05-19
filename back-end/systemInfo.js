@@ -50,13 +50,23 @@ class HwInfo {
       const d = new Date(Date.now());
       const time = d.toISOString();
 
-      const data = {
-        value: item.current,
-        time,
-      };
+      if (!this.#chartSorage[index]?.data)
+        this.#chartSorage[index] = { data: new Array() };
 
-      this.#chartSorage[index].push(data);
-      return { ...item, chartData: this.#chartSorage[index] };
+      if (!this.#chartSorage[index]?.labels)
+        this.#chartSorage[index] = {
+          ...this.#chartSorage[index],
+          labels: new Array(),
+        };
+
+      this.#chartSorage[index].data.push(item.current);
+      this.#chartSorage[index].labels.push(time);
+
+      return {
+        ...item,
+        data: this.#chartSorage[index].data,
+        labels: this.#chartSorage[index].labels,
+      };
     });
   };
 
