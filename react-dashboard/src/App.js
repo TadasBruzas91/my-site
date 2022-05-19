@@ -31,7 +31,7 @@ function App() {
           hwInfo.map((item) => (
             <Grid item xs={12} container spacing={1} key={item?.id}>
               {" "}
-              // TODO: Chart not resize properly
+              {/* TODO: Chart not resize properly */}
               <Grid item xs={12} md={"auto"} textAlign="center">
                 <CircularProgressWithLabel
                   size={200}

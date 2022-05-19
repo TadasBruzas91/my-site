@@ -88,12 +88,12 @@ export default function ChartComponent({ item }) {
           grid: {
             display: false,
           },
-          min: 700,
-          max: 720,
+          min: labels.length - 20,
+          max: labels.length,
         },
       },
     };
-  }, [item.min, item.max]);
+  }, [item.min, item.max, labels.length]); // TODO: Chart resets when data not full
 
   // Chart reset when mouse goes out TODO: Chart reset not working on touch screens
   useEffect(() => {
@@ -101,13 +101,14 @@ export default function ChartComponent({ item }) {
       if (chartRef.current) chartRef.current.resetZoom();
     };
     if (chartDivRef && chartDivRef.current) {
-      chartDivRef.current.addEventListener("mouseout", resetChart);
+      const chartDiv = chartDivRef.current;
+      chartDiv.addEventListener("mouseout", resetChart);
       //   chartDivRef.current.addEventListener("touchcancel", resetChart);
+      return () => {
+        chartDiv.removeEventListener("mouseout", resetChart);
+        //   chartDivRef.current.removeEventListener("touchcancel", resetChart);
+      };
     }
-    return () => {
-      chartDivRef.current.removeEventListener("mouseout", resetChart);
-      //   chartDivRef.current.removeEventListener("touchcancel", resetChart);
-    };
   }, []);
 
   return (
