@@ -9,7 +9,7 @@ class HwInfo {
     this.#hwInfo = [
       { id: 1, min: 0, max: 100, label: "CPU Load", symbol: "%" },
       { id: 2, min: 0, max: 100, label: "CPU Frequency", symbol: "GHz" },
-      { id: 3, min: 35, max: 90, label: "CPU Temperature", symbol: "°C" },
+      { id: 3, min: 30, max: 90, label: "CPU Temperature", symbol: "°C" },
       { id: 4, min: 0, max: 100, label: "RAM Usage", symbol: "%" },
     ];
     this.#chartSorage = [];
@@ -44,11 +44,13 @@ class HwInfo {
 
   #updateChartData = (sysInfo) => {
     return sysInfo.map((item, index) => {
-      if (this.#chartSorage[index].length >= 720)
-        this.#chartSorage[index].shift();
+      if (this.#chartSorage[index]?.data?.length >= 17280 /* 24 h */) {
+        this.#chartSorage[index].data.shift();
+        this.#chartSorage[index].labels.shift();
+      }
 
       const d = new Date(Date.now());
-      const time = d.toISOString();
+      const time = d.toISOString().slice(11, 19);
 
       if (!this.#chartSorage[index]?.data)
         this.#chartSorage[index] = { data: new Array() };
