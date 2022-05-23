@@ -18,15 +18,22 @@ then
     exit
 fi
 
-if [[ "$1" = "-e" ]]
+if [[ "$1" = "-d" ]]
 then
     ./scripts/dev-stop.sh
+    exit
+fi
+
+if [[ "$1" = "-c" ]]
+then
+    ./scripts/clean.sh
     exit
 fi
 
 text="dev containers"
 
 echo "Enter -s for start $text"
-echo "Enter -e for stop $text"
+echo "Enter -d for stop $text"
 echo "Enter -rs for restart $text"
 echo "Enter -rb for rebuild $text"
+echo "Enter -c for clean $text"
