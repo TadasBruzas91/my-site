@@ -28,7 +28,7 @@ services:
   dashboard:
     build:
       context: ./react-dashboard
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.prod
     container_name: dashboard
     depends_on:
       - api
@@ -38,6 +38,19 @@ services:
   api:
     build:
       context: ./back-end
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.prod
     container_name: api
+    depends_on:
+      - db
+    environment:
+      - DB_URL=mongodb://data-base/my-site
     pid: "host"
+
+  db:
+    image: mongo:4.4.14-focal
+    container_name: data-base
+    ports:
+      - 27017:27017
+    volumes:
+      - /data-base:/data/db # for testing
+      # - /mnt/external/mongodb:/data/db # for production
