@@ -7,14 +7,14 @@ import CircularProgressWithLabel from "./components/CircularProgressWithLabel";
 import ChartComponent from "./components/ChartComponent";
 import "./App.css";
 
-const baseUrl = process.env.REACT_APP_API_URL || "http://localhost";
+const baseUrl = process.env.REACT_APP_API_URL || "http://localhost:3001";
 
 function App() {
   const [hwInfo, setHwInfo] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
-      const { data } = await axios.get(`${baseUrl}/api/hwinfo`);
+      const { data } = await axios.get(`${baseUrl}/hwinfo`);
       if (data) setHwInfo(data);
     }
     fetchData();

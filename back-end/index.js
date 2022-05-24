@@ -33,7 +33,7 @@ if (cluster.isMaster) {
   const express = require("express");
   const helmet = require("helmet");
   const cors = require("cors");
-  const PORT = 80;
+  const PORT = process.env.PORT || 80;
   const app = express();
   const hwInfo = require("./routes/sysInfo");
 

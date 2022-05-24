@@ -1,0 +1,6 @@
+FROM node:16-bullseye
+
+ENV PORT=3001
+WORKDIR /app
+EXPOSE 3001
+CMD [ "npm", "run", "start" ]
