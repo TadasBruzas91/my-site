@@ -1,9 +1,10 @@
 FROM node:16-bullseye AS build
 
-COPY . /app
+ENV REACT_APP_API_URL=http://192.168.1.90/api
 WORKDIR /app
+COPY package*.json .
 RUN npm install
-ENV REACT_APP_API_URL=https://tadascode.lt
+COPY . .
 RUN npm run build
 
 FROM nginx:1.21.6-alpine

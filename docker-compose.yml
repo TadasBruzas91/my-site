@@ -52,5 +52,5 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - /data-base:/data/db # for testing
+      - ./data-base:/data/db # for testing
       # - /mnt/external/mongodb:/data/db # for production
