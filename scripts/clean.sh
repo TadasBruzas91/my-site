@@ -14,3 +14,5 @@ sudo rm -r react-dashboard/dist && echo "dist removed"
 sudo rm -r react-dashboard/build && echo "build removed"
 
 sudo rm -r reverse-proxy/logs/* && echo "logs removed"
+
+sudo rm -r data-base && echo "data-base removed"
