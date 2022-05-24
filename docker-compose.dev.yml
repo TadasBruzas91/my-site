@@ -1,31 +1,19 @@
 version: "3.9"
 
 services:
-  reverse-proxy:
-    image: nginx:1.21.6-alpine
-    container_name: reverse-proxy
-    depends_on:
-      - web
-      - dashboard
-      - api
-    ports:
-      - 80:80
-    volumes:
-      - ./reverse-proxy/conf.d/:/etc/nginx/conf.d/:ro
-      - ./reverse-proxy/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./reverse-proxy/logs/:/var/log/nginx/:rw
-      - /var/www/html/:/var/www/html/:ro
-
   web:
     build:
       context: ./front-end
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     container_name: web
     depends_on:
       - api
+    ports:
+      - 80:1234
     volumes:
       - ./front-end/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./front-end/dist/:/usr/share/nginx/html/:ro
+      - ./front-end/:/app/
 
   dashboard:
     build:
@@ -34,13 +22,20 @@ services:
     container_name: dashboard
     depends_on:
       - api
+    ports:
+      - 3000:3000
     volumes:
       - ./react-dashboard/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./react-dashboard/build/:/usr/share/nginx/html/:ro
+      - ./react-dashboard/:/app/
 
   api:
     build:
       context: ./back-end
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     container_name: api
     pid: "host"
+    ports:
+      - 3001:3001
+    volumes:
+      - ./back-end/:/app/
