@@ -1,21 +1,13 @@
 "use strict";
 const si = require("systeminformation");
+const SysInfoCurrent = require("./schemas/systemInfoSchemaCurrent");
+const SysInfoHistory = require("./schemas/systemInfoSchemaHistory");
+var subMonths = require("date-fns/subMonths");
 
 class HwInfo {
-  #hwInfo;
-  #chartSorage;
   constructor() {
     this.update();
-    this.#hwInfo = [
-      { id: 1, min: 0, max: 100, label: "CPU Load", symbol: "%" },
-      { id: 2, min: 0, max: 100, label: "CPU Frequency", symbol: "GHz" },
-      { id: 3, min: 30, max: 90, label: "CPU Temperature", symbol: "°C" },
-      { id: 4, min: 0, max: 100, label: "RAM Usage", symbol: "%" },
-    ];
-    this.#chartSorage = [];
-    this.#hwInfo.forEach(() => {
-      this.#chartSorage.push([]);
-    });
+    setInterval(this.#deleteOldData, Math.pow(2, 31) - 1);
   }
 
   #getSysInfo = async () => {
@@ -26,54 +18,79 @@ class HwInfo {
     const { total: ram_available, active: ram_used } = await si.mem();
     const ram_used_perc = (ram_used * 100) / ram_available;
 
-    return [
-      { current: cpu_load },
-      { current: cpu_freq, min: cpu_freq_min, max: cpu_freq_max },
-      { current: cpu_temp },
-      { current: ram_used_perc },
-    ];
+    return {
+      currentData: [
+        {
+          _id: 1,
+          name: "cpu_load",
+          current: cpu_load,
+          min: 0,
+          max: 100,
+          label: "CPU load",
+          symbol: "%",
+        },
+        {
+          _id: 2,
+          name: "cpu_freq",
+          current: cpu_freq,
+          min: cpu_freq_min,
+          max: cpu_freq_max,
+          label: "CPU frequency",
+          symbol: "GHz",
+        },
+        {
+          _id: 3,
+          name: "cpu_temp",
+          current: cpu_temp,
+          min: 30,
+          max: 80,
+          label: "CPU temperature",
+          symbol: "°C",
+        },
+        {
+          _id: 4,
+          name: "ram_used_perc",
+          current: ram_used_perc,
+          min: 0,
+          max: 100,
+          label: "RAM used",
+          symbol: "%",
+        },
+      ],
+      historyData: {
+        cpu_load,
+        cpu_freq,
+        cpu_temp,
+        ram_used,
+        ram_used_perc,
+      },
+    };
+  };
+
+  #deleteOldData = async () => {
+    await SysInfoCurrent.deleteMany({
+      createdAt: { $lt: subMonths(Date.now(), 1) },
+    });
   };
 
   update = async () => {
     const sysInfo = await this.#getSysInfo();
-    const sysInfoWithChartData = this.#updateChartData(sysInfo);
-    sysInfoWithChartData.forEach((item, index) => {
-      this.#hwInfo[index] = { ...this.#hwInfo[index], ...item };
+    const currentData = new SysInfoCurrent({
+      currentData: sysInfo.currentData,
     });
-  };
+    const historyData = new SysInfoHistory(sysInfo.historyData);
 
-  #updateChartData = (sysInfo) => {
-    return sysInfo.map((item, index) => {
-      if (this.#chartSorage[index]?.data?.length >= 17280 /* 24 h */) {
-        this.#chartSorage[index].data.shift();
-        this.#chartSorage[index].labels.shift();
-      }
-
-      const d = new Date(Date.now());
-      const time = d.toISOString().slice(11, 19);
-
-      if (!this.#chartSorage[index]?.data)
-        this.#chartSorage[index] = { data: new Array() };
-
-      if (!this.#chartSorage[index]?.labels)
-        this.#chartSorage[index] = {
-          ...this.#chartSorage[index],
-          labels: new Array(),
-        };
-
-      this.#chartSorage[index].data.push(item.current);
-      this.#chartSorage[index].labels.push(time);
-
-      return {
-        ...item,
-        data: this.#chartSorage[index].data,
-        labels: this.#chartSorage[index].labels,
-      };
-    });
-  };
-
-  getHwInfo = () => {
-    return this.#hwInfo;
+    try {
+      await SysInfoCurrent.deleteMany();
+    } catch (ex) {
+      console.error(ex);
+    }
+    try {
+      await currentData.save();
+      await historyData.save();
+    } catch (ex) {
+      console.error(ex);
+    }
   };
 }
 

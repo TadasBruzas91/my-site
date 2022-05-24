@@ -5,4 +5,8 @@
 **/certbot
 **/access.log
 **/error.log
+<<<<<<< Updated upstream
 data-base/
+=======
+data-base
+>>>>>>> Stashed changes

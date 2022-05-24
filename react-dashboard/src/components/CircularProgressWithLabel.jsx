@@ -27,7 +27,7 @@ export default function CircularProgressWithLabel(props) {
 
   // Change progress bar orentation
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.down("sm"));
+  const matches = useMediaQuery(theme.breakpoints.down("md"));
   let angle = 150;
   if (!matches) angle = 60;
 

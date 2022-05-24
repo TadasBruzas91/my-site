@@ -7,15 +7,23 @@ import CircularProgressWithLabel from "./components/CircularProgressWithLabel";
 import ChartComponent from "./components/ChartComponent";
 import "./App.css";
 
-const baseUrl = process.env.REACT_APP_API_URL || "http://localhost:3001";
+const baseUrl = process.env.REACT_APP_API_URL || "http://192.168.1.90:3001";
 
 function App() {
-  const [hwInfo, setHwInfo] = useState([]);
+  const [currentData, setCurrentData] = useState([]);
+  const [historyData, setHistoryData] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
-      const { data } = await axios.get(`${baseUrl}/hwinfo`);
-      if (data) setHwInfo(data);
+      try {
+        const { data: current } = await axios.get(`${baseUrl}/hwinfo/current`);
+        const { data: history } = await axios.get(`${baseUrl}/hwinfo/history`);
+        const [currentData] = current;
+        if (current) setCurrentData(currentData.currentData);
+        if (history) setHistoryData(history);
+      } catch (ex) {
+        console.error(ex);
+      }
     }
     fetchData();
     const intervalId = setInterval(fetchData, 5000);
@@ -29,12 +37,11 @@ function App() {
     <Container>
       <h1>Dashboard</h1>
       <Grid container spacing={10}>
-        {hwInfo.length > 0 ? (
-          hwInfo.map((item) => (
-            <Grid item xs={12} container spacing={1} key={item?.id}>
+        {currentData?.length > 0 ? (
+          currentData.map((item) => (
+            <Grid item xs={12} container spacing={1} key={item?._id}>
               {" "}
-              {/* TODO: Chart not resize properly */}
-              <Grid item xs={12} md={"auto"} textAlign="center">
+              <Grid item xs={12} md={3} textAlign="center">
                 <CircularProgressWithLabel
                   size={200}
                   thickness={4}
@@ -46,9 +53,9 @@ function App() {
                   mx="auto"
                 />
               </Grid>
-              <Grid item xs={12} md>
+              <Grid item xs={12} md={9}>
                 <Paper sx={{ height: 203 }}>
-                  <ChartComponent item={item} />
+                  <ChartComponent data={historyData} item={item} />
                 </Paper>
               </Grid>
             </Grid>

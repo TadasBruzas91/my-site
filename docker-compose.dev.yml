@@ -34,8 +34,20 @@ services:
       context: ./back-end
       dockerfile: Dockerfile.dev
     container_name: api
-    pid: "host"
+    depends_on:
+      - db
     ports:
       - 3001:3001
+    environment:
+      - DB_URL=mongodb://data-base/my-site
+    pid: "host"
     volumes:
       - ./back-end/:/app/
+
+  db:
+    image: mongo:4.4.14-focal
+    container_name: data-base
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data-base:/data/db

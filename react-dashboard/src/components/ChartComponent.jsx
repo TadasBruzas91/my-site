@@ -11,6 +11,8 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import zoomPlugin from "chartjs-plugin-zoom";
+import parseISO from "date-fns/parseISO";
+import format from "date-fns/format";
 
 ChartJS.register(
   CategoryScale,
@@ -23,31 +25,21 @@ ChartJS.register(
   zoomPlugin
 );
 
-export default function ChartComponent({ item }) {
+export default function ChartComponent({ data, item }) {
   const chartDivRef = useRef();
   const chartRef = useRef();
 
-  const t = new Date();
-  const minsInHour = 60;
-  const timeZone = t.getTimezoneOffset() / minsInHour;
-
-  // Change time to browser time zone
-  const labels = item.labels.reduce((resArray, element, _) => {
-    const [hours, minutes, seconds] = element.split(":");
-    const correctHours = parseInt(hours) - timeZone;
-    const strCorrectHours =
-      correctHours < 10 ? `0${correctHours}` : `${correctHours}`;
-    const correctTime = `${strCorrectHours}:${minutes}.${seconds}`;
-    resArray.push(correctTime);
-    return resArray;
-  }, []);
+  const dataset = data.map((element) => element[item.name]);
+  const labels = data.map((element) =>
+    format(parseISO(element.createdAt, { additionalDigits: 0 }), "HH:mm.ss")
+  );
 
   const chartData = {
     labels,
     datasets: [
       {
         label: `${item.label} in (${item.symbol})`,
-        data: item.data,
+        data: dataset,
         borderColor: "#8884D8",
         backgroundColor: "#8884D8",
         tension: 0.5,
@@ -59,6 +51,9 @@ export default function ChartComponent({ item }) {
     return {
       maintainAspectRatio: false,
       plugins: {
+        legend: {
+          labels: { boxWidth: 0 },
+        },
         zoom: {
           pan: {
             enabled: true,
