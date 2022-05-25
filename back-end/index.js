@@ -1,5 +1,5 @@
 const cluster = require("cluster");
-const totalCPUs = 1 || require("os").cpus().length;
+const totalCPUs = process.env.WORKERS || require("os").cpus().length;
 const mongoose = require("mongoose");
 const dataBaseUrl = process.env.DB_URL;
 const workers = [];

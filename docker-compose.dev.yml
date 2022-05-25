@@ -40,6 +40,7 @@ services:
       - 3001:3001
     environment:
       - DB_URL=mongodb://data-base/my-site
+      - WORKERS=1
     pid: "host"
     volumes:
       - ./back-end/:/app/
