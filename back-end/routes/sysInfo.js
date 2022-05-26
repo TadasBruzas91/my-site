@@ -9,8 +9,9 @@ router.get("/current", async (req, res) => {
 });
 
 router.get("/history", async (req, res) => {
+  const { hist: history } = req.query;
   const count = await SysInfoHistory.countDocuments();
-  const sk = count > 720 ? count - 720 : 0;
+  const sk = count > history ? count - history : 0;
   const data = await SysInfoHistory.find().skip(sk).select({
     cpu_load: true,
     cpu_freq: true,
