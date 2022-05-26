@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useEffect } from "react";
+import React, { useMemo, useRef, useEffect, useState } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -11,8 +11,6 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import zoomPlugin from "chartjs-plugin-zoom";
-import parseISO from "date-fns/parseISO";
-import format from "date-fns/format";
 
 ChartJS.register(
   CategoryScale,
@@ -28,11 +26,22 @@ ChartJS.register(
 export default function ChartComponent({ data, item }) {
   const chartDivRef = useRef();
   const chartRef = useRef();
+  const [dataset, setDataset] = useState([]);
+  const [labels, setLabels] = useState([]);
 
-  const dataset = data.map((element) => element[item.name]);
-  const labels = data.map((element) =>
-    format(parseISO(element.createdAt, { additionalDigits: 0 }), "HH:mm.ss")
-  );
+  useEffect(() => {
+    const worker = new Worker(new URL("./processData.js", import.meta.url));
+    worker.postMessage({ data, item });
+    worker.onmessage = (msg) => {
+      const { d, l } = msg.data;
+      setDataset(d);
+      setLabels(l);
+      worker.terminate();
+    };
+  }, [data]);
+
+  // const dataset = [];
+  // const labels = [];
 
   const chartData = {
     labels,
