@@ -1,8 +1,8 @@
 FROM node:16-bullseye
 
-ENV PORT=80
 WORKDIR /app
 COPY package*.json ./
+ENV PORT=80
 RUN npm install
 COPY . /app
 EXPOSE 80
