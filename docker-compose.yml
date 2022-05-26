@@ -6,6 +6,7 @@ services:
     container_name: reverse-proxy
     depends_on:
       - web
+      - dashboard
     ports:
       - 80:80
       - 443:443
