@@ -24,6 +24,8 @@ services:
       - api
     ports:
       - 3000:3000
+    environment:
+      - REACT_APP_API_URL=http://192.168.1.137:3001
     volumes:
       - ./react-dashboard/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./react-dashboard/build/:/usr/share/nginx/html/:ro
