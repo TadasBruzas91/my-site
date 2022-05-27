@@ -59,6 +59,7 @@ export default function ChartComponent({ data, item }) {
   const options = useMemo(() => {
     return {
       maintainAspectRatio: false,
+      animation: false,
       plugins: {
         legend: {
           labels: { boxWidth: 0 },
