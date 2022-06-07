@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  reverse-proxy:
+    image: nginx:1.21.6-alpine
+    container_name: reverse-proxy
+    depends_on:
+      - web
+      - dashboard
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./reverse-proxy/logs/:/var/log/nginx/:rw
+      - ./reverse-proxy/conf.d/:/etc/nginx/conf.d/:ro
+      - ./reverse-proxy/nginx.conf:/etc/nginx/nginx.conf:ro
+      - /etc/letsencrypt/:/etc/nginx/ssl/:ro
+      - /etc/ssl/dhparamcerts.pem:/etc/ssl/dhparamcerts.pem:ro
+      - /var/www/html/:/var/www/html/:ro
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    driver: bridge
+    name: proxy
