@@ -19,6 +19,8 @@ services:
       - /var/www/html/:/var/www/html/:ro
     networks:
       - proxy
+    environment:
+      - TZ=Europe/Vilnius
 
 networks:
   proxy:

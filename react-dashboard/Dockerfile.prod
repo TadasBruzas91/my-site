@@ -4,7 +4,7 @@ WORKDIR /app
 COPY package*.json .
 RUN npm install
 COPY . .
-ENV REACT_APP_API_URL=http://192.168.1.137/api
+ENV REACT_APP_API_URL=http://localhost/api
 RUN npm run build
 
 FROM nginx:1.21.6-alpine
